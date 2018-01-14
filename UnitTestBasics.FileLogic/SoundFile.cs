@@ -6,10 +6,7 @@
 
         public bool CanBeDeletedBy(User user)
         {
-            if (user.IsSystemAdmin)
-                return true;
-
-            if (user == SavedBy)
+            if (user.IsSystemAdmin || user == SavedBy)
                 return true;
 
             return false;
