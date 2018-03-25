@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitTestBasics.FileLogic;
 
 namespace UnitTestBasics.UnitTests
@@ -15,8 +16,9 @@ namespace UnitTestBasics.UnitTests
             // Act
             var result = file.CanBeDeletedBy(new User { IsSystemAdmin = true });
 
-            // Assert
+            // Assert standard and FluentAssertions
             Assert.IsTrue(result);
+            result.Should().BeTrue();
         }
 
         [TestMethod]
@@ -28,6 +30,7 @@ namespace UnitTestBasics.UnitTests
             var result = soundFile.CanBeDeletedBy(user);
 
             Assert.IsTrue(result);
+            result.Should().BeTrue();
         }
 
         [TestMethod]
@@ -39,6 +42,7 @@ namespace UnitTestBasics.UnitTests
             var result = soundFile.CanBeDeletedBy(new User());
 
             Assert.IsFalse(result);
+            result.Should().BeFalse();
         }
     }
 }
